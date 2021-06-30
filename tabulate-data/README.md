@@ -45,3 +45,53 @@ tabulate(column_names, data)
 |    test    |   1000  |
 +------------+---------+
 ```
+
+### Setting the table title.
+
+To set the table title all we have to do is to specify the `title` attribute during table creation. Example:
+
+```py
+def tabulate(column_names, data):
+  table = PrettyTable(column_names)
+  table.title= "VISUALIZING SETS EXAMPLES"
+  for row in data:
+    table.add_row(row)
+  print(table)
+```
+
+### Columns alignment.
+
+Columns can be either aligned to center `c`, left `l` or right `r` by setting the alignment property. Default is `center`. Example:
+
+```py
+def tabulate(column_names, data):
+  table = PrettyTable(column_names)
+  table.title= "VISUALIZING SETS EXAMPLES"
+  table.align[column_names[0]] = 'l'
+  table.align[column_names[1]] = 'r'
+  for row in data:
+    table.add_row(row)
+  print(table)
+
+column_names = ["SUBSET", "EXAMPLE(s)"]
+row_data = [
+        ["training", len(train_data)],
+        ['validation', len(valid_data)],
+        ['test', len(test_data)]
+]
+tabulate(column_names, row_data)
+```
+
+Output:
+
+```
++-----------------------------+
+|  VISUALIZING SETS EXAMPLES  |
++--------------+--------------+
+| SUBSET       |   EXAMPLE(s) |
++--------------+--------------+
+| training     |        29000 |
+| validation   |         1014 |
+| test         |         1000 |
++--------------+--------------+
+```
