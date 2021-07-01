@@ -95,3 +95,11 @@ Output:
 | test         |         1000 |
 +--------------+--------------+
 ```
+
+### Setting the maximum characters per row in each sentence.
+
+We can do this by setting `_max_width` during table creation. This will ensure that the sentence that has more than `_max_width` will be wraped to a new line. Setting `_max_width` property to the table:
+
+```py
+ table._max_width = {"column_name" :max_characters, "column_name" :max_characters, "column_name" :max_characters}
+```
