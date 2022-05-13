@@ -28,12 +28,16 @@ def decontracted(phrase:str)->str:
 
 
 def clean_sentence(sent:str)->str:
+
     """
     Args:
         sent (str): an uncleaned sentence with text, punctuations, numbers and non-english words
     Returns:
-        str: returns a cleaned sentence with only english words in it. 
+        str: returns a cleaned sentence with only english words in it.
     """
+    sent = sent.lower() # converting the text to lower case
+    sent = re.sub(r'(@|#)([A-Za-z0-9]+)', ' ', sent) # removing tags and mentions (there's no right way of doing it with regular expression but this will try)
+    sent = re.sub(r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+", " ", sent) # removing emails
     sent = re.sub(r'https?\S+', ' ', sent, flags=re.MULTILINE) # removing url's
     sent = re.sub(r'\d', ' ', sent) # removing none word characters
     sent = re.sub(r'[^\w\s\']', ' ', sent) # removing punctuations except for "'" in words like I'm
